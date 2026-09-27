@@ -1,5 +1,7 @@
-ARG DX_COMPILER_BASE_IMAGE=dx-compiler:ubuntu-22.04
+ARG DX_COMPILER_BASE_IMAGE=dx-compiler:2.4.2-dxcom-2.4.1-ubuntu-22.04
 FROM ${DX_COMPILER_BASE_IMAGE}
+
+ARG EXPECTED_DX_COM_VERSION=2.4.1
 
 ENV VIRTUAL_ENV=/venv-dxnn \
     PATH=/venv-dxnn/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin \
@@ -7,6 +9,9 @@ ENV VIRTUAL_ENV=/venv-dxnn \
     PYTHONUNBUFFERED=1
 
 USER root
+
+RUN dxcom --version 2>&1 \
+    | grep -F "DX-COM (DEEPX Compiler) ${EXPECTED_DX_COM_VERSION}"
 
 COPY requirements/dxcompile.txt /tmp/requirements-dxcompile.txt
 RUN /venv-dxnn/bin/python -m pip install --no-cache-dir \
@@ -16,4 +21,3 @@ USER deepx
 WORKDIR /deepx/workspace
 
 CMD ["bash"]
-

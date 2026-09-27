@@ -18,7 +18,8 @@ services:
       context: .
       dockerfile: docker/Dockerfile.dxcompile
       args:
-        DX_COMPILER_BASE_IMAGE: ${DX_COMPILER_BASE_IMAGE:-dx-compiler:ubuntu-22.04}
+        DX_COMPILER_BASE_IMAGE: ${DX_COMPILER_BASE_IMAGE:-dx-compiler:2.4.2-dxcom-2.4.1-ubuntu-22.04}
+        EXPECTED_DX_COM_VERSION: "2.4.1"
     working_dir: /deepx/workspace
     environment:
       VIRTUAL_ENV: /venv-dxnn

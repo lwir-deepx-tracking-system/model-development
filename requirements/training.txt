@@ -1,1 +1,19 @@
-# 학습 환경에 필요한 라이브러리와 버전을 여기에 추가합니다.
+# Clean reproducible training stack for FLIR thermal YOLO26 experiments.
+# CUDA 11.8 wheels are selected by the extra index below.
+--extra-index-url https://download.pytorch.org/whl/cu118
+
+torch==2.7.0+cu118
+torchvision==0.22.0+cu118
+torchaudio==2.7.0+cu118
+ultralytics==8.4.157
+ultralytics-thop==2.1.6
+wandb==0.26.1
+numpy==2.0.2
+pandas==2.2.3
+matplotlib==3.9.4
+scipy==1.13.1
+opencv-python-headless==4.11.0.86
+Pillow==11.1.0
+PyYAML==6.0.3
+psutil==7.0.0
+tqdm==4.67.1
