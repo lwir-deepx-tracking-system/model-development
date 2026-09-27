@@ -1,0 +1,10 @@
+artifacts/*
+!artifacts/.gitkeep
+data/*
+!data/.gitkeep
+vendor/
+.env
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/

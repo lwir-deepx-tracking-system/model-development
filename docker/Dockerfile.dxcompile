@@ -1,0 +1,19 @@
+ARG DX_COMPILER_BASE_IMAGE=dx-compiler:ubuntu-22.04
+FROM ${DX_COMPILER_BASE_IMAGE}
+
+ENV VIRTUAL_ENV=/venv-dxnn \
+    PATH=/venv-dxnn/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+USER root
+
+COPY requirements/dxcompile.txt /tmp/requirements-dxcompile.txt
+RUN /venv-dxnn/bin/python -m pip install --no-cache-dir \
+        -r /tmp/requirements-dxcompile.txt
+
+USER deepx
+WORKDIR /deepx/workspace
+
+CMD ["bash"]
+

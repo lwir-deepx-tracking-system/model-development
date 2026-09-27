@@ -1,0 +1,15 @@
+ARG TRAIN_BASE_IMAGE
+FROM ${TRAIN_BASE_IMAGE}
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+WORKDIR /workspace
+
+COPY requirements/training.txt /tmp/requirements.txt
+RUN if [ -s /tmp/requirements.txt ]; then \
+        python3 -m pip install --no-cache-dir -r /tmp/requirements.txt; \
+    fi
+
+CMD ["bash"]
+
